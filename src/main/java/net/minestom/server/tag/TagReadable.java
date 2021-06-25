@@ -29,6 +29,19 @@ public interface TagReadable {
     }
 
     /**
+     * Reads the specified tag, give a default value in not found
+     *
+     * @param tag the tag to check
+     * @param defaultValue - the value to return if the key is not found
+     * @param <T> the tag type
+     * @return true if the tag is present, false otherwise
+     */
+    default <T> @NotNull T getTagOrDefault(@NotNull Tag<T> tag, @NotNull T defaultValue) {
+        T value;
+        return (value = getTag(tag)) != null ? value : defaultValue;
+    }
+
+    /**
      * Converts an nbt compound to a tag reader.
      *
      * @param compound the compound to convert
